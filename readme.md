@@ -1,4 +1,4 @@
-### Optimizing Python Performance using Numba JIT and Nuitka AOT Compilation
+# Optimizing Python Performance using Numba JIT and Nuitka AOT Compilation
 ***
 &nbsp;&nbsp;&nbsp;&nbsp;
 In the world of programming, optimizing performance is a continuous pursuit, particularly when dealing with
@@ -12,7 +12,7 @@ Selective Compilation approach is to use Numba JIT selectively, only applying it
 not compiled with Nuitka. This allows developers to reap the benefits of Numba's performance enhancements for specific
 sections while still leveraging Nuitka's AOT compilation for the rest of the codebase.
 
-#### My Workaround
+### My Workaround
 &nbsp;&nbsp;&nbsp;&nbsp;
 To circumvent the compatibility roadblocks, we've ventured into a workaround centered on selective compilation. This
 innovative approach treats Numba-optimized functions as script code, which can be executed using Python's `exec()`
@@ -32,7 +32,7 @@ functions. This object serves as the bridge between the Numba JIT-optimized func
 functions using the function objects stored in the mapping object. The performance gains from Numba's enhancements
 are now fully accessible.
 
-#### Code Obfuscation
+### Code Obfuscation
 &nbsp;&nbsp;&nbsp;&nbsp;
 To further enhance the integration of Numba JIT and Nuitka AOT, we introduce the concept of code obfuscation. Code
 obfuscation involves the transformation of human-readable code into a less understandable form while retaining its
@@ -50,7 +50,7 @@ functions.
 3. **Function Mapping and Invocation**: As before, create a mapping object linking function names to the dynamically
 optimized functions. You can then seamlessly invoke these functions using the function objects from the mapping object.
 
-#### Benchmarking
+### Benchmarking
 &nbsp;&nbsp;&nbsp;&nbsp;
 To complete our approach, we incorporate benchmarking by performing calculation on following function.
 ```
@@ -84,7 +84,7 @@ for enhanced performance.
 In this step, we employ the `timeit.timeit` module to measure elapsed time, iterating the process 10 times for enhanced
 accuracy.
 
-#### Result
+### Result
 &nbsp;&nbsp;&nbsp;&nbsp;
 We evaluate the performance of various optimization scenarios to gain insights into the effectiveness of our approach.
 Among these scenarios, the **Pure Python Interpreter** stands out as the baseline, revealing intriguing performance trends
@@ -134,7 +134,7 @@ trade-off may occur due to Nuitka and code obfuscation, the benefits in terms of
 compatibility through stand-alone executables, and broader portability make this approach compelling, especially in
 scenarios where critical performance is vital.
 
-#### Conclusion
+### Conclusion
 &nbsp;&nbsp;&nbsp;&nbsp;
 This workaround not only enhances code performance through dynamic and ahead-of-time compilation but also fortifies code
 security and expands compatibility and portability. While a marginal performance trade-off may occur, the broader

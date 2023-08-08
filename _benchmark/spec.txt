@@ -1,0 +1,5 @@
+python -m nuitka nuitka_aot.py --standalone --onefile --enable-plugin=upx --upx-binary=D:\upx-4.0.2-win64 --show-anti-bloat-changes --mingw64
+
+python -m nuitka nuitka_jit_py.py --standalone --include-module=numba --include-data-file=numba_jit.py=numba_jit.py  --mingw64
+
+python -m nuitka nuitka_jit_pyc.py --standalone --include-module=numba --include-data-file=numba_jit.pyc=numba_jit.pyc  --mingw64

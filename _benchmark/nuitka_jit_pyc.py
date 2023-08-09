@@ -34,6 +34,7 @@ def write_csv_with_loop(iterations, filename):
             with open(filename, mode='w', newline='') as script_file:
                 writer = csv.writer(script_file)
                 writer.writerow(['Iterations Number', 'Elapsed Time'])
+                print(f"Initialize bytecode takes : {timeit.timeit(lambda: benchmark(2), number=2)} s")
 
                 for i in range(1, iterations + 1):
                     size = 2 ** i

@@ -6,6 +6,18 @@ import timeit
 FILENAME = "nb_np_jit"
 
 
+def extract_import_lines(input_string):
+    lines = input_string.split('\n')
+    import_lines = []
+
+    for line in lines:
+        if 'import ' in line or 'from ' in line:
+            import_lines.append(line.strip())
+
+    formatted_imports = '\n'.join(import_lines)
+    return formatted_imports
+
+
 def execute_bytecode(bytecode, globals_dict, locals_dict):
     try:
         exec(bytecode, globals_dict, locals_dict)
@@ -22,11 +34,15 @@ def write_csv_with_loop(iterations, filename):
     if script_code:
         # Define the globals and locals dictionaries with arguments
         globals_dict = {}
+        locals_dict = {}
+        import_code = extract_import_lines(script_code)
+        execute_bytecode(import_code, globals_dict, locals_dict)
+        globals_dict = locals_dict
         locals_dict = {}  # The argument to example_function
 
         # Execute the bytecode with arguments
         execute_bytecode(script_code, globals_dict, locals_dict)
-        globals_dict['np'] = locals_dict['np']
+        globals_dict.update(locals_dict)
 
         # Call the example_function from the executed code
         if 'sum_of_squares_py' in locals_dict:
@@ -34,6 +50,7 @@ def write_csv_with_loop(iterations, filename):
             with open(filename, mode='w', newline='') as script_file:
                 writer = csv.writer(script_file)
                 writer.writerow(['Iterations Number', 'Elapsed Time'])
+                print(f"Initialize bytecode takes : {timeit.timeit(lambda: benchmark(2), number=2)} s")
 
                 for i in range(1, iterations + 1):
                     size = 2 ** i
